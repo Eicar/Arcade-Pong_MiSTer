@@ -106,17 +106,14 @@ localparam CONF_STR = {
 wire [7:0] m_dip = {1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, status[8]};
 ////////////////////   CLOCKS   ///////////////////
 
-wire clk_sys, clk_1m, clk_24m,clk_48m;
+wire clk_sys;
 wire pll_locked;
 
 pll pll
 (
 	.refclk(CLK_50M),
 	.rst(0),
-	.outclk_0(clk_sys), // 12mhz
-	.outclk_1(clk_1m),
-	.outclk_2(clk_24m),
-	.outclk_3(clk_48m),
+	.outclk_0(clk_sys), // 7.159mhz
 	.locked(pll_locked)
 );
 
@@ -249,7 +246,7 @@ wire hs, vs;
 wire [2:0] r,g;
 wire [1:0] b;
 
-
+/*
 reg ce_pix;
 always @(posedge clk_48m) begin
         reg old_clk;
@@ -257,14 +254,15 @@ always @(posedge clk_48m) begin
         old_clk <= clk_sys;
         ce_pix <= old_clk & ~clk_sys;
 end
+*/
 
 //arcade_fx #(512,224,8,0) arcade_video
 arcade_fx #(375, 12) arcade_video
 (
         .*,
 
-        .clk_video(clk_48m),
-        //.ce_pix(ce_vid),
+        .clk_video(clk_sys),
+        .ce_pix(clk_sys),
 
         .RGB_in({r,g,b}),
         .HBlank(hblank),
@@ -278,8 +276,8 @@ arcade_fx #(375, 12) arcade_video
 //screen_rotate #(256,224,8) screen_rotate
 
 
-wire [12:0] audio;
-assign AUDIO_L = {audio, 3'b000};
+wire audio;
+assign AUDIO_L = {audio, 15'd0};
 assign AUDIO_R = AUDIO_L;
 assign AUDIO_S = 0;
 
@@ -294,7 +292,7 @@ end
 pong pong
 (
 	.mclk(CLK_50M),
-	.clk7_159(ce_7m),
+	.clk7_159(clk_sys),
 //	.reset(~initReset_n|RESET | status[0] | buttons[1]),
 	.coin_sw(m_coin|btn_coin_1|btn_coin_2),
 	.dip_sw(m_dip),
@@ -309,7 +307,7 @@ pong pong
 	.hblank(hblank),
 	.vblank(vblank),
 
-	.sound_out(audio[7])
+	.sound_out(audio)
 );
 
 endmodule
