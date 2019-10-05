@@ -133,6 +133,8 @@ wire [10:0] ps2_key;
 wire [15:0] joystick_0, joystick_1;
 wire [15:0] joy = joystick_0 ;
 wire [15:0] joy2 = joystick_1;
+wire [15:0] joystick_analog_0;
+wire [15:0] joystick_analog_1;
 
 hps_io #(.STRLEN($size(CONF_STR)>>3)) hps_io
 (
@@ -152,6 +154,8 @@ hps_io #(.STRLEN($size(CONF_STR)>>3)) hps_io
 
 	.joystick_0(joystick_0),
 	.joystick_1(joystick_1),
+	.joystick_analog_0(joystick_analog_0),
+	.joystick_analog_1(joystick_analog_1),	
 	.ps2_key(ps2_key)
 );
 
@@ -243,8 +247,7 @@ wire m_coin   = m_start1 | m_start2;
 wire hblank, vblank;
 //wire ce_vid = clk_sys;
 wire hs, vs;
-wire [2:0] r,g;
-wire [1:0] b;
+wire [3:0] r,g, b;
 
 /*
 reg ce_pix;
@@ -288,6 +291,12 @@ always @(posedge clk_sys) begin
 	
 	if(old_download & ~ioctl_download) initReset_n <= 1;
 end
+
+wire [7:0] paddle1_vpos;
+assign paddle1_vpos = joystick_analog_0[15:8] + 8'h80;
+
+wire [7:0] paddle2_vpos;
+assign paddle2_vpos = joystick_analog_1[15:8] + 8'h80;
 
 pong pong
 (
