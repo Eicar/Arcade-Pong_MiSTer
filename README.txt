@@ -1,9 +1,13 @@
-# Arcade-Pong_MiSTer
+*****************************************************************
+**              Arcade: Atari Pong (1972)                      **
+** A Verilog implementation based on the original schematics.  **
+*****************************************************************
 
-Arcade: Atari Pong (1972)
-A Verilog implementation based on the original schematics.
-
-Written by: Richard Eng (engric@gmail.com)
+                Written by: Richard Eng
+                email:      engric@gmail.com
+                twitter:    @richard_eng
+                www:        retrobits.no
+                git:        github.com/Eicar
 
 ---------
 Changelog
