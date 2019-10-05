@@ -176,10 +176,7 @@ always @(posedge clk_sys) begin
 			'h026: btn_paddle_left <= pressed; // lalt
 			'h029: btn_paddle_right<= pressed; // space
 
-			'h005: btn_one_player  <= pressed; // F1
-			'h006: btn_two_players <= pressed; // F2
 			// JPAC/IPAC/MAME Style Codes
-
 			'h005: btn_one_player  <= pressed; // F1
 			'h006: btn_two_players <= pressed; // F2
 			'h016: btn_start_1     <= pressed; // 1
@@ -192,7 +189,7 @@ always @(posedge clk_sys) begin
 			'h034: btn_right_2     <= pressed; // G
 			'h01C: btn_fire_2      <= pressed; // A
 			'h01B: btn_paddle_left_2  <= pressed; // S
-			'h015: btn_paddle_right_2 <= pressed; //  Q
+			'h015: btn_paddle_right_2 <= pressed; // Q
 			'h02C: btn_test        <= pressed; // T
 		endcase
 	end
@@ -260,7 +257,6 @@ always @(posedge clk_48m) begin
 end
 */
 
-//arcade_fx #(512,224,8,0) arcade_video
 arcade_fx #(375, 12) arcade_video
 (
         .*,
@@ -277,8 +273,6 @@ arcade_fx #(375, 12) arcade_video
         .fx(status[5:3])
         //.no_rotate(status[2])
 );
-//screen_rotate #(256,224,8) screen_rotate
-
 
 wire audio;
 assign AUDIO_L = {audio, 15'd0};
