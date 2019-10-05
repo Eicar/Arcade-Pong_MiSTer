@@ -60,6 +60,4 @@ wire d8b_out;
 ls10 d8b(s2a, dip_sw[0] ? s2c : 1'b1, s2e, d8b_out);
 ls00 b2a(d8a_out, d8b_out, stop_g);
 
-//assign stop_g = ~(~(s1a & s1c & s1e) & ~(s2a & s2c & s2e));
-
 endmodule

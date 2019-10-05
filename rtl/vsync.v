@@ -37,29 +37,4 @@ module vsync
 srlatch f5cd(mclk, ~vreset, ~v16, vblank, _vblank);
 assign _vsync = ~(vblank & v4 & ~v8);
 
-/*
-wire h5a_to_g5a;
-
-wire _vblank_tmp;
-ls02 f5c(vreset, vblank, _vblank_tmp);
-
-reg _vblank_reg;
-always @(posedge gclk) begin
-  _vblank_reg <= _vblank_tmp;
-end
-assign _vblank = _vblank_reg;
-
-wire vblank_tmp;
-ls02 f5d(_vblank, v16, vblank_tmp);
-
-reg vblank_reg;
-always @(posedge gclk) begin
-  vblank_reg <= vblank_tmp;
-end
-assign vblank = vblank_reg;
-
-ls00 h5a(v8, v8, h5a_to_g5a);
-ls10 g5a(vblank, v4, h5a_to_g5a, _vsync);
-*/
-
 endmodule

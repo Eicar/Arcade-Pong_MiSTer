@@ -71,8 +71,11 @@ always @(negedge _hsync) begin
     end else if (counter == 9'd0 && !_v256) begin
         // 22 full range
         // 38 limited (authentic)
-        counter <= ( { 1'b0, paddle_vpos } + 9'd5 + 9'd16) < 9'd38 ? 9'd38 : ( { 1'b0, paddle_vpos } + 9'd5 + 9'd16);  // 261-256=5 lines + 16 vblank lines
+        counter <= ( { 1'b0, paddle_vpos } + 9'd5 + 9'd16) < 9'd38 ? 9'd38 : 
+				   ( { 1'b0, paddle_vpos } + 9'd5 + 9'd16) > 9'd261 ? 9'd261 :
+				   ( { 1'b0, paddle_vpos } + 9'd5 + 9'd16); // 261-256=5 lines + 16 vblank lines
         trigger <= 1'b1;
+
     end
 end
 

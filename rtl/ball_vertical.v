@@ -27,8 +27,6 @@
   ----------------------------
 */
 `default_nettype none
-//`include "ball_vertical_move.v"
-//`include "ball_vertical_counter.v"
 
 module ball_vertical
 (

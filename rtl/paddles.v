@@ -34,7 +34,6 @@ module paddles
     output wire b1, c1, d1, pad1, b2, c2, d2, pad2 
 );
 
-
 wire _vpad1;
 paddle p1(paddle1_vpos, _hsync, _v256, b1, c1, d1, _vpad1);
 

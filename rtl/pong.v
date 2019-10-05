@@ -22,6 +22,12 @@
   SOFTWARE.
 */
 
+/*
+  Arcade: Atari Pong (1972)
+  A Verilog implementation based on the original schematics.
+
+  Written by: Richard Eng
+*/
 `default_nettype none
 
 module pong(

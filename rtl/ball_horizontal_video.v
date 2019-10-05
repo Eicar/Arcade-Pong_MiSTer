@@ -42,9 +42,6 @@ dm9316 g7(clk7_159, _clr, aa, ba, 1'b0, 1'b1, _load, 1'b1, _hblank, qa, qb, qc, 
 wire /* verilator lint_off UNUSED */ qa2, qb2, qc2, qd2 /* verilator lint_on UNUSED */;
 dm9316 h7(clk7_159, _clr, 1'b0, 1'b0, 1'b0, 1'b1, _load, g7_carry, 1'b1, qa2, qb2, qc2, qd2, h7_carry);
 
-//wire [8:0] ball_hcnt;
-//assign ball_hcnt = { g6b_out, qd2, qc2, qb2, qa2, qd, qc, qb, qa };
-
 wire unused, g6b_out;
 ls107 g6b(h7_carry, _clr, 1'b1, 1'b1, g6b_out, unused);
 
