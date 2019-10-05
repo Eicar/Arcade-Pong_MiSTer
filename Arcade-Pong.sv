@@ -106,7 +106,7 @@ localparam CONF_STR = {
 wire [7:0] m_dip = {1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, status[8]};
 ////////////////////   CLOCKS   ///////////////////
 
-wire clk_sys;
+wire clk_sys, clk_vid;
 wire pll_locked;
 
 pll pll
@@ -114,6 +114,7 @@ pll pll
 	.refclk(CLK_50M),
 	.rst(0),
 	.outclk_0(clk_sys), // 7.159mhz
+	.outclk_1(clk_vid), // 28.636mhz
 	.locked(pll_locked)
 );
 
@@ -264,7 +265,7 @@ arcade_fx #(375, 12) arcade_video
 (
         .*,
 
-        .clk_video(clk_sys),
+        .clk_video(clk_vid),
         .ce_pix(clk_sys),
 
         .RGB_in({r,g,b}),
