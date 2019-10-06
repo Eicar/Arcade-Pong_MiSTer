@@ -38,17 +38,19 @@ module srlatch
     output wire _q
 );
 
-reg state;
-initial state = 1'b0;
-wire out;
-
-nand(q, _s, state);
-nand(out, q, _r);
-
-assign _q = ~q;
+reg val;
+initial val = 1'b0;
 
 always @(posedge mclk) begin
-    state <= out;
+	case({_s, _r})
+		{1'b0, 1'b0}: val <= 1'bx;
+		{1'b0, 1'b1}: val <= 1'b1;		
+		{1'b1, 1'b0}: val <= 1'b0;		
+		{1'b1, 1'b1}: val <= val;
+	endcase
 end
+
+assign q = val;
+assign _q = ~q;
 
 endmodule
