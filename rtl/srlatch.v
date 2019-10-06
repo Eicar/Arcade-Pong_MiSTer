@@ -33,8 +33,8 @@
 
 module srlatch
 (
-	input wire mclk, _s, _r,
-	output wire q,
+    input wire mclk, _s, _r,
+    output wire q,
     output wire _q
 );
 
@@ -42,12 +42,12 @@ reg val;
 initial val = 1'b0;
 
 always @(posedge mclk) begin
-	case({_s, _r})
-		{1'b0, 1'b0}: val <= 1'bx;
-		{1'b0, 1'b1}: val <= 1'b1;		
-		{1'b1, 1'b0}: val <= 1'b0;		
-		{1'b1, 1'b1}: val <= val;
-	endcase
+    case({_s, _r})
+        {1'b0, 1'b0}: val <= 1'bx;
+        {1'b0, 1'b1}: val <= 1'b1;
+        {1'b1, 1'b0}: val <= 1'b0;
+        {1'b1, 1'b1}: val <= val;
+    endcase
 end
 
 assign q = val;

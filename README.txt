@@ -12,7 +12,7 @@
 ---------
 Changelog
 ---------
-  2019-10-05 Initial release
+  2019-10-06 Initial release
 
 ------
 Inputs
@@ -54,6 +54,10 @@ Q&A
  A: I will probably not add features not present in the original game.
     This core is all about accuracy. 
 
+-Q: Your HDL code looks like crap!
+ A: You are probably right about that! I have a 20+ years software developer background but HDL is
+    pretty new to me. Hopefully I will get better at it :)
+    
 -Q: I've found a bug!
  A: Please let me know about it! I really want this core to be as accurate as possible.
     I will make sure you will get credit for it!
